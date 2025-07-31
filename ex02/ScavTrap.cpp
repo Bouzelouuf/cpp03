@@ -38,3 +38,22 @@ void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << name << " is now guarding the gate!" << std::endl;
 }
+
+void ScavTrap::attack(const std::string &target)
+{
+	if (hit_points <= 0)
+	{
+		std::cout << "ScavTrap " << name << " can't attack, because he is destroyed!" << std::endl;
+		return ;
+	}
+	else if (energy_points < 1)
+	{
+		std::cout << "ScavTrap " << name << " can't attack, because his energy is empty!" << std::endl;
+		return ;
+	}
+	else
+	{
+		std::cout << "ScavTrap " << name << " attacks " << target << " ,causing " << amount << " points of damage!" << std::endl;
+		energy_points--;
+	}
+}

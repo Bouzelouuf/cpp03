@@ -83,7 +83,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 		if (hit_points >= 10)
 			hit_points = 10; 
 		std::cout	<< "ClapTrap " << name
-					<< " repair himslef!\n"
+					<< " repair himself!\n"
 					<< "ClapTrap " << name
 					<< " , has now " << hit_points
 					<< " hit points" << std::endl;
