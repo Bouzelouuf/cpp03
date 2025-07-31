@@ -4,14 +4,14 @@ DiamondTrap::DiamondTrap():ClapTrap("default_clap_name") , ScavTrap(), FragTrap(
 {
 	hit_points = 100;
 	energy_points = 50;
-	attack_damage = 30;
+	amount = 30;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name") , ScavTrap(), FragTrap(), name(name)
 {
 	hit_points = 100;
 	energy_points = 50;
-	attack_damage = 30;
+	amount = 30;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &copy) : ClapTrap(copy), ScavTrap(copy), FragTrap (copy), name(copy.name)

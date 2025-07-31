@@ -1,77 +1,68 @@
 #include "ClapTrap.hpp"
 #include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 #include "DiamondTrap.hpp"
 #include <iostream>
 
 int main()
 {
-   std::cout << "=== CLAPTRAP TESTS ===" << std::endl;
-   {
-       ClapTrap basic("Basic");
-       basic.attack("dummy");
-       basic.takeDamage(5);
-       basic.beRepaired(3);
-       basic.takeDamage(15); // Should die
-       basic.attack("dummy"); // Should fail (no HP)
-   }
-
-   std::cout << "\n=== SCAVTRAP TESTS ===" << std::endl;
-   {
-       ScavTrap guard("Guardian");
-       guard.attack("enemy");
-       guard.guardGate();
-       guard.takeDamage(50);
-       guard.beRepaired(20);
-       
-       // Test copy
-       ScavTrap guard2(guard);
-       guard2.guardGate();
-   }
-
-   std::cout << "\n=== FRAGTRAP TESTS ===" << std::endl;
-   {
-       FragTrap frag("Fragmenter");
-       frag.attack("target");
-       frag.highFivesGuys();
-       frag.takeDamage(80);
-       frag.beRepaired(40);
-       
-       // Test assignment
-       FragTrap frag2("Copy");
-       frag2 = frag;
-       frag2.highFivesGuys();
-   }
-
-   std::cout << "\n=== DIAMONDTRAP TESTS ===" << std::endl;
-   {
-       DiamondTrap diamond("Diamond");
-       diamond.whoAmI();
-       diamond.attack("villain");
-       diamond.guardGate();    // From ScavTrap
-       diamond.highFivesGuys(); // From FragTrap
-       diamond.takeDamage(25);
-       diamond.beRepaired(10);
-       
-       // Test copy constructor
-       DiamondTrap diamond2(diamond);
-       diamond2.whoAmI();
-       
-       // Test default constructor
-       DiamondTrap diamond3;
-       diamond3.whoAmI();
-   }
-
-   std::cout << "\n=== ENERGY DEPLETION TEST ===" << std::endl;
-   {
-       DiamondTrap tired("Tired");
-       // Use up all energy (50 points)
-       for (int i = 0; i < 25; i++) {
-           tired.attack("dummy");
-           tired.beRepaired(1);
-       }
-       tired.attack("dummy"); // Should fail (no energy)
-       tired.beRepaired(1);   // Should fail (no energy)
-   }
-
-   return 0;
+    std::cout << "=== DIAMONDTRAP TESTS ===" << std::endl;
+    
+    // Test 1: Construction/Destruction
+    std::cout << "\n--- Test 1: Construction/Destruction ---" << std::endl;
+    {
+        DiamondTrap diamond("Hero");
+        std::cout << "DiamondTrap created!" << std::endl;
+    } // Vérifier l'ordre de destruction
+    
+    // Test 2: whoAmI function
+    std::cout << "\n--- Test 2: whoAmI Function ---" << std::endl;
+    {
+        DiamondTrap diamond("Batman");
+        diamond.whoAmI();
+        
+        DiamondTrap diamond2("Superman");  
+        diamond2.whoAmI();
+    }
+    
+    // Test 3: Attack function (should use ScavTrap's)
+    std::cout << "\n--- Test 3: Attack Function ---" << std::endl;
+    {
+        DiamondTrap warrior("Warrior");
+        warrior.attack("enemy");
+        warrior.attack("another_enemy");
+    }
+    
+    // Test 4: Special functions from both parents
+    std::cout << "\n--- Test 4: Inherited Special Functions ---" << std::endl;
+    {
+        DiamondTrap hybrid("Hybrid");
+        hybrid.guardGate();      // From ScavTrap
+        hybrid.highFivesGuys();  // From FragTrap
+        hybrid.whoAmI();         // Own function
+    }
+    
+    // Test 5: Complete functionality test
+    std::cout << "\n--- Test 5: Complete Functionality ---" << std::endl;
+    {
+        DiamondTrap ultimate("Ultimate");
+        
+        ultimate.whoAmI();
+        ultimate.attack("vilain");
+        ultimate.takeDamage(25);
+        ultimate.beRepaired(10);
+        ultimate.guardGate();
+        ultimate.highFivesGuys();
+        ultimate.whoAmI();
+    }
+    
+    // Test 6: Default constructor
+    std::cout << "\n--- Test 6: Default Constructor ---" << std::endl;
+    {
+        DiamondTrap defaultDiamond;
+        defaultDiamond.whoAmI();
+    }
+    
+    std::cout << "\n=== ALL DIAMONDTRAP TESTS COMPLETED ===" << std::endl;
+    return 0;
 }
