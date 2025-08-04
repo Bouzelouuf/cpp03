@@ -4,14 +4,14 @@ ScavTrap::ScavTrap() : ClapTrap()
 {
 	hit_points = 100;
 	energy_points = 50;
-	amount = 20;
+	attack_damage = 20;
 	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	this->hit_points = 100;
 	this->energy_points = 50;
-	this->amount = 20;
+	this->attack_damage = 20;
 	std::cout << "ScavTrap " << name << " constructor called" << std::endl;
 }
 
@@ -52,7 +52,7 @@ void ScavTrap::attack(const std::string &target)
 	}
 	else
 	{
-		std::cout << "ScavTrap " << name << " attacks " << target << " ,causing " << amount << " points of damage!" << std::endl;
+		std::cout << "ScavTrap " << name << " attacks " << target << " ,causing " << attack_damage << " points of damage!" << std::endl;
 		energy_points--;
 	}
 }
